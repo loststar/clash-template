@@ -36,6 +36,12 @@ dns:
     geoip-code: CN
     domain:
       - +.linkedin.com
+      - +.linkedin.cn
+      - +.linkedin.at
+      - +.licdn.com
+      - +.licdn.cn
+      - +.lnkd.in
+      - +.bizographics.com
 
 cfw-latency-timeout: 3000
 cfw-latency-url: http://www.gstatic.com/generate_204
