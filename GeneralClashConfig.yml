@@ -1,5 +1,4 @@
-# 基于 ACL4SSR GeneralClashConfig.yml，增加 DNS 配置解决 LinkedIn 跳转中国站问题
-# 参考: https://blog.clash-plus.com/post/clash-linkedin-com-no-cn/
+# 基于 ACL4SSR GeneralClashConfig.yml，增加 DNS 配置
 
 mixed-port: 7890
 socks-port: 7891
@@ -15,25 +14,37 @@ experimental:
 dns:
   enable: true
   ipv6: false
-  listen: 0.0.0.0:53
-  enhanced-mode: fake-ip
+  respect-rules: true
+  default-nameserver:
+    - 119.29.29.29
+    - 114.114.114.114
+  proxy-server-nameserver:
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+    - tls://dot.pub
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
     - '*.lan'
     - localhost.ptlogin2.qq.com
+  use-hosts: true
   nameserver:
-    - 223.5.5.5
-    - 119.29.29.29
+    - https://doh.pub/dns-query
+    - tls://dot.pub
+    - https://223.5.5.5/dns-query
+    - https://223.6.6.6/dns-query
+    - tls://dns.alidns.com
+    - tls://223.5.5.5:853
+    - tls://223.6.6.6:853
   fallback:
-    - 8.8.8.8
-    - 1.1.1.1
-    - tls://1.0.0.1:853
-    - tls://dns.google:853
-    - https://dns.google/dns-query
-    - https://cloudflare-dns.com/dns-query
+    - https://doh.pub/dns-query
+    - tls://dot.pub
+    - https://223.5.5.5/dns-query
+    - https://223.6.6.6/dns-query
+    - tls://dns.alidns.com
+    - tls://223.5.5.5:853
+    - tls://223.6.6.6:853
   fallback-filter:
     geoip: true
-    geoip-code: CN
     domain:
       - +.linkedin.com
       - +.linkedin.cn
@@ -43,6 +54,9 @@ dns:
       - +.lnkd.in
       - +.bizographics.com
       - +.linkedin-ei.com
+    ipcidr:
+      - 240.0.0.0/4
+      - 0.0.0.0/32
 
 cfw-latency-timeout: 3000
 cfw-latency-url: http://www.gstatic.com/generate_204
