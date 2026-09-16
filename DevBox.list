@@ -1,0 +1,16 @@
+# Microsoft Dev Box uses Azure Virtual Desktop / Windows 365 connectivity.
+# Sources:
+# https://learn.microsoft.com/en-us/azure/virtual-desktop/required-fqdn-endpoint
+# https://learn.microsoft.com/en-us/windows-365/enterprise/optimization-of-rdp
+
+DOMAIN-SUFFIX,wvd.microsoft.com
+DOMAIN-SUFFIX,windows.cloud.microsoft
+DOMAIN-SUFFIX,windows.static.microsoft
+DOMAIN,windows365.microsoft.com
+
+# Dev Box telemetry endpoint observed on the Japan East connection.
+DOMAIN,wvd-eventhubs-jpe-prod-su3.servicebus.windows.net
+
+# TCP RDP gateway and UDP TURN relay, including connections without a hostname.
+IP-CIDR,40.64.144.0/20,no-resolve
+IP-CIDR,51.5.0.0/16,no-resolve
